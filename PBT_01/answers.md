@@ -180,3 +180,6 @@
     - Ví dụ cụ thể: một trang chi tiết sản phẩm có <main><article><h1>...</h1><p class="price"><strong>...</strong></p></article></main> cho phép bot lấy đúng h1 làm tiêu đề sản phẩm và screen reader nhảy tới main rồi article — giúp người dùng tiếp cận tên/giá nhanh, và search engine có thể trích giá/đánh giá làm snippet nếu thêm microdata.
 
     - Tuy nhiên, không phải lúc nào cũng cần thẻ semantic mới: div hợp lý cho container thuần layout (grid wrapper, flex container) hoặc khi một vùng chỉ dùng để tạo lưới/spacing mà không mang ý nghĩa nội dung. Kết luận: học semantic không tốn vô ích — nó tăng tính truy cập, khả năng SEO và dễ bảo trì; còn div nên dùng cho mục đích bố cục thuần túy.
+
+# Câu D
+(https://drive.google.com/file/d/1YBJSir4C_yRiaz0FIKAuZJSK1bb7t0-_/view?usp=drive_link)
