@@ -96,3 +96,7 @@ Ví dụ B: Ảnh avatar người dùng hoặc icon giao diện (nhỏ, không c
 
 Ví dụ A: Ảnh sản phẩm lớn trên trang chi tiết kèm chú thích giá/phiên bản: hình + figcaption chứa “iPhone 16 Pro Max — 25.990.000₫”.
 Ví dụ B: Biểu đồ/infographic trong báo cáo — ảnh + figcaption giải thích nội dung và ghi nguồn (ví dụ “Biểu đồ doanh thu Q1/2026 — nguồn: hệ thống bán hàng”).
+
+
+
+### Bài B1 (20đ) — Form Đăng ký Tài khoản

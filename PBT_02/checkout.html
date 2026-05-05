@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán Đơn Hàng</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Xác nhận đặt hàng</h1>
+
+        <!-- Phần 1: Giỏ hàng -->
+        <section>
+            <h2>1. Giỏ hàng của bạn</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>iPhone 15 Pro</td>
+                        <td>28,000,000đ</td>
+                        <td>1</td>
+                        <td>28,000,000đ</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Ốp lưng MagSafe</td>
+                        <td>1,200,000đ</td>
+                        <td>2</td>
+                        <td>2,400,000đ</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Củ sạc 20W</td>
+                        <td>500,000đ</td>
+                        <td>1</td>
+                        <td>500,000đ</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: right;">Tổng cộng:</td>
+                        <td><output>30,900,000đ</output></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <form action="#">
+            <!-- Bonus: Datalist & Progress -->
+            <div class="bonus-section">
+                <div class="form-group">
+                    <label for="search">Thêm nhanh phụ kiện:</label>
+                    <input type="text" id="search" list="products" placeholder="Tìm sản phẩm...">
+                    <datalist id="products">
+                        <option value="Tai nghe AirPods">
+                        <option value="Cáp sạc USB-C">
+                        <option value="Miếng dán cường lực">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label>Điểm tích lũy (Hạng Bạc):</label>
+                    <meter min="0" max="100" low="30" high="80" optimum="90" value="65"></meter>
+                    <progress value="70" max="100" style="width: 100%;"></progress>
+                </div>
+            </div>
+
+            <!-- Phần 2: Form thanh toán -->
+            <section>
+                <h2>2. Thanh toán</h2>
+                <div class="form-group">
+                    <label>Phương thức thanh toán:</label>
+                    <input type="radio" id="cod" name="pay" value="cod" checked> <label style="display:inline"
+                        for="cod">COD</label>
+                    <input type="radio" id="bank" name="pay" value="bank"> <label style="display:inline"
+                        for="bank">Chuyển khoản</label>
+                    <input type="radio" id="wallet" name="pay" value="wallet"> <label style="display:inline"
+                        for="wallet">Ví điện tử</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="coupon">Mã giảm giá (SALE + 4 số):</label>
+                    <input type="text" id="coupon" pattern="SALE[0-9]{4}" placeholder="VD: SALE2026">
+                </div>
+
+                <div class="form-group">
+                    <label for="note">Ghi chú:</label>
+                    <textarea id="note" rows="3"></textarea>
+                </div>
+            </section>
+
+            <!-- Phần 3: Thông tin giao hàng -->
+            <section>
+                <h2>3. Giao hàng</h2>
+                <div class="form-group">
+                    <label for="date">Ngày giao hàng mong muốn:</label>
+                    <!-- Giả sử hôm nay là 2026-05-05, min sẽ là 2026-05-06 -->
+                    <input type="date" id="date" min="2026-05-06" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="slot">Khung giờ:</label>
+                    <select id="slot">
+                        <option>Sáng 8-12h</option>
+                        <option>Chiều 14-18h</option>
+                        <option>Tối 18-21h</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="speed">Thời gian giao hàng (1-7 ngày):</label>
+                    <input type="range" id="speed" min="1" max="7" step="1" value="3"
+                        oninput="this.nextElementSibling.value = this.value">
+                    <span><output>3</output> ngày</span>
+                </div>
+            </section>
+
+            <button type="submit" aria-label="Xác nhận đặt hàng">XÁC NHẬN ĐẶT HÀNG</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

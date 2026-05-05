@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Register — Validation</title>
+</head>
+
+<body>
+  <h1>Đăng ký — Form validation</h1>
+  <form action="#" method="POST" id="registerForm">
+
+    <fieldset>
+      <legend>Thông tin cá nhân</legend>
+
+      <label for="fullname">Họ tên</label>
+      <input id="fullname" name="fullname" type="text" required minlength="2" maxlength="50" placeholder="Nguyễn Văn A">
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required placeholder="you@example.com">
+
+      <label for="phone">Số điện thoại</label>
+      <input id="phone" name="phone" type="tel" pattern="^[0-9]{10}$" placeholder="0123456789">
+
+      <label for="birthday">Ngày sinh</label>
+      <input id="birthday" name="birthday" type="date" placeholder="dd/mm/yyyy">
+    </fieldset>
+
+    <fieldset>
+      <legend>Tài khoản</legend>
+
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" pattern="^[A-Za-z0-9_]{3,20}$" placeholder="username_01">
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" minlength="8" pattern="(?=.*[A-Z])(?=.*\d).{8,}"
+        placeholder="Ít nhất 8 ký tự, 1 chữ hoa, 1 số" required>
+
+      <label for="confirm">Xác nhận Password</label>
+      <input id="confirm" name="confirm" type="password" minlength="8" placeholder="Nhập lại mật khẩu" required>
+    </fieldset>
+
+    <fieldset>
+      <legend>Thông tin giao hàng</legend>
+
+      <label for="city">Thành phố</label>
+      <select id="city" name="city" required>
+        <option value="" disabled selected>Chọn thành phố</option>
+        <option>Hà Nội</option>
+        <option>TP. Hồ Chí Minh</option>
+        <option>Đà Nẵng</option>
+        <option>Hải Phòng</option>
+        <option>Cần Thơ</option>
+      </select>
+
+      <label for="district">Quận / Huyện</label>
+      <select id="district" name="district">
+        <option value="" disabled selected>Chọn quận/huyện</option>
+        <option>Quận 1</option>
+        <option>Quận 2</option>
+        <option>Quận 3</option>
+        <option>Quận 4</option>
+        <option>Quận 5</option>
+      </select>
+
+      <label for="address">Địa chỉ chi tiết</label>
+      <textarea id="address" name="address" rows="3" placeholder="Số nhà, tên đường, phường/xã"></textarea>
+
+      <label>Giới tính</label>
+      <div class="row">
+        <div>
+          <input id="gender_m" name="gender" type="radio" value="male">
+          <label for="gender_m" class="inline">Nam</label>
+        </div>
+        <div>
+          <input id="gender_f" name="gender" type="radio" value="female">
+          <label for="gender_f" class="inline">Nữ</label>
+        </div>
+        <div>
+          <input id="gender_o" name="gender" type="radio" value="other">
+          <label for="gender_o" class="inline">Khác</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <div>
+      <input id="agree" name="agree" type="checkbox" required>
+      <label for="agree" class="inline">Tôi đồng ý với điều khoản</label>
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:12px">
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </div>
+  </form>
+</body>
+
+</html>
