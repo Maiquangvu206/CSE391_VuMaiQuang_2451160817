@@ -163,3 +163,55 @@ Phần 2 — Layout 3 cột
 - Nếu đổi thứ tự giữa các rules có specificity khác nhau (ví dụ một rule có class vs một rule có id), rule có specificity cao hơn luôn thắng bất kể thứ tự xuất hiện. Vì vậy thay đổi thứ tự không làm thay đổi kết quả khi specificity khác nhau.
 - Nếu có hai rules có specificity bằng nhau (ví dụ `.text {}` và `[class~="text"] {}` đều 0-1-0), thì rule xuất hiện sau trong file sẽ thắng (cascade by source order). Vì vậy thay đổi thứ tự giữa các rules cùng specificity sẽ thay đổi màu hiển thị.
 
+### Câu C1 (10đ) — Debug CSS Layout
+
+1) Tính chiều rộng thực tế (content-box):
+
+- Sidebar: declared = 300px; padding = 20px ×2 = 40px; border = 1px ×2 = 2px → actual = 300 + 40 + 2 = 342 px.
+- Content: declared = 660px; padding = 30px ×2 = 60px; border = 1px ×2 = 2px → actual = 660 + 60 + 2 = 722 px.
+- Tổng actual = 342 + 722 = 1064 px (> container 960px) → content bị đẩy xuống dòng.
+
+2) Vì sao layout bị vỡ
+
+- Vì đang dùng `content-box` (mặc định): `width` chỉ áp dụng cho phần content; padding và border được cộng thêm vào tổng kích thước. Do đó hai cột chiếm >960px nên không còn chỗ để nằm cạnh nhau.
+
+3) Hai cách sửa
+
+- Cách 1 (dùng `border-box`):
+    - Thêm `.sidebar, .content { box-sizing: border-box; }` (hoặc `*{box-sizing:border-box}` global).
+    - Khi đó declared width đã bao gồm padding+border ⇒ sidebar actual = 300, content actual = 660 ⇒ tổng = 960 (khít).
+
+- Cách 2 (không dùng `border-box`):
+    - Giữ `content-box` nhưng hiệu chỉnh width để bù padding+border.
+    - Tổng extra = sidebar_extra + content_extra = (40+2) + (60+2) = 104. Do đó s + c phải = 960 - 104 = 856. Giữ s = 300 ⇒ c = 556.
+    - Đổi `.content { width:556px; }` → actual tổng = 342 + (556+60+2) = 960.
+
+
+### Câu C2 (10đ) — Cascade Puzzle
+
+1) "Sản phẩm A" (thẻ `h2.title.highlight` bên trong `#featured`)
+- `font-size` = 20px.
+    - Vì có rule `.card .title { font-size: 20px; }` áp dụng trực tiếp lên `h2` (specificity đủ cao so với `body`/`.container`).
+- `color` = green.
+    - Các rule liên quan: `body { color: #333 }`, `.card { color: blue }`, `#featured .title { color: red }`, `.highlight { color: green !important }`.
+    - `.highlight` có `!important`, nên bất kể specificity của các rule khác ra sao, `color: green !important` thắng mọi rule khác theo quy tắc `!important` của CSS.
+
+2) "Mô tả sản phẩm" (thẻ `p` trong card `#featured`)
+- `color` = blue.
+    - Giải thích: có rule `.card { color: blue }` nên `.card` đặt màu cho vùng card; rule `.card p { color: inherit; }` khiến `p` kế thừa màu từ `.card` (blue). Rule `#featured .title` ảnh hưởng chỉ tới `h2`, `.highlight` áp dụng cho phần tử có class `highlight` (ở đây là `h2`) và không ảnh hưởng tới `p`.
+
+3) "Sản phẩm B" (thẻ `h2.title` của card thứ hai)
+- `font-size` = 20px.
+    - Vì `.card .title { font-size: 20px }` áp dụng trực tiếp.
+- `color` = blue.
+    - Vì card này có `.card { color: blue }` và không có rule ID hay `!important` khác áp dụng cho `h2` này; `h2` kế thừa (hoặc nhận) màu từ `.card` → blue.
+
+4) "Mô tả sản phẩm B" (thẻ `p.highlight`)
+- `color` = green.
+    - Giải thích: `p` có class `highlight`, và rule `.highlight { color: green !important; }` chứa `!important`, nên sẽ thắng mọi quy tắc khác (kể cả `.card p { color: inherit }` hay `.card { color: blue }`). Vì vậy `p.highlight` hiển thị màu green.
+
+Ghi chú về cascade + inheritance ngắn gọn:
+- `!important` > normal declarations (bất kể specificity). Nếu có nhiều `!important`, so sánh specificity giữa chúng.
+- Nếu không có `!important`, CSS chọn rule có specificity cao hơn; nếu specificity bằng nhau, chọn rule xuất hiện sau (source order).
+- Thuộc tính `color` là inheritable: nếu phần tử không có color được khai báo, nó sẽ kế thừa màu từ tổ tiên gần nhất có color.
+
