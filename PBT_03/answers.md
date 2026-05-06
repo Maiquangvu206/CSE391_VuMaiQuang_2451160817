@@ -214,4 +214,3 @@ Ghi chú về cascade + inheritance ngắn gọn:
 - `!important` > normal declarations (bất kể specificity). Nếu có nhiều `!important`, so sánh specificity giữa chúng.
 - Nếu không có `!important`, CSS chọn rule có specificity cao hơn; nếu specificity bằng nhau, chọn rule xuất hiện sau (source order).
 - Thuộc tính `color` là inheritable: nếu phần tử không có color được khai báo, nó sẽ kế thừa màu từ tổ tiên gần nhất có color.
-
