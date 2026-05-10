@@ -43,3 +43,5 @@ Row3: [ item5 ] [ item6 ] */
 7 items → Bố cục = Row1: [1] [2] [3]
 Row2: [4] [5] [6]
 Row3: [7] [ ] [ ] */
+
+### Câu C1 (10đ) — Flexbox vs Grid: Khi nào dùng gì?
