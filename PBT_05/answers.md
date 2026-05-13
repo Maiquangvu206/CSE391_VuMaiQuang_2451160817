@@ -177,3 +177,138 @@ $radius: 6px;
 
 ->Cài Sass (Dart Sass được khuyến nghị) và biên dịch hoặc dùng bundler (Webpack/Gulp/Vite).
 Ví dụ dùng CLI (cài global hoặc dev-dependency):
+
+### Câu C1 (10đ) — Phân tích trang web thực
+
+- **Navigation thay đổi thế nào?**
+	- Mobile: Hiển thị biểu tượng hamburger (`.hamburger`) và ẩn menu chính bằng CSS (`.main-nav { display: none; }`). Khi người dùng mở menu (thêm class `.open`), menu hiện dưới dạng danh sách dọc.
+	- Tablet / Desktop: Ẩn hamburger (`display: none`) và hiển thị menu ngang (`.main-nav ul { display: flex; }`). Không dùng dropdown; chuyển đổi là giữa hamburger (mobile) và horizontal nav (desktop).
+
+- **Lưới content thay đổi mấy cột?**
+	- Mobile (< 768px): 1 cột.
+	- Tablet (≥ 768px và < 1024px): 2 cột.
+	- Desktop (≥ 1024px): 4 cột.
+	- (Quy tắc: `.product-grid` / `.grid` với `grid-template-columns` thay đổi trong `@media (min-width: 768px)` và `@media (min-width: 1024px)`).
+
+- **Elements nào bị ẩn trên mobile?**
+	- `.sidebar` (filter) — ẩn trên mobile, hiển thị ở tablet/desktop.
+	- `.ads` (ads bar) — ẩn trên mobile và tablet, hiển thị ở desktop.
+	- `.main-nav` về mặt hiển thị mặc định bị ẩn trên mobile (thay bằng hamburger).
+
+- **Font size có thay đổi không?**
+	- Có: base `font-size: 16px` trên mobile; tăng lên `17px` ở `@media (min-width: 768px)`; tăng lên `18px` ở `@media (min-width: 1024px)` — giúp readability trên màn hình lớn hơn.
+
+---
+
+### Câu C2 (10đ) — Thiết kế trang "Đặt bàn nhà hàng" (Wireframe & CSS skeleton)
+
+Wireframe (theo Mobile-First):
+
+- Mobile (≤ 767px)
+```
+[HEADER]
+  Logo      Số điện thoại
+
+[HERO IMAGE]  (chiếm toàn chiều ngang)
+
+[FORM ĐẶT BÀN] (xếp dọc: ngày, giờ, số người, ghi chú)
+
+[GALLERY ẢNH MÓN]
+  ▢
+  ▢  ▢  (trên điện thoại lớn có thể 2 cột; mặc định 1 cột)
+  ▢
+
+{BẢN ĐỒ: ẩn hoặc thu gọn}
+
+[FOOTER]
+```
+
+
+- Tablet (768px — 1023px)
+```
+[HEADER] (logo + số điện thoại nằm ngang)
+
+[HERO IMAGE] (chiếm toàn chiều ngang)
+
+[KHU VỰC TRÊN]
+  [FORM ĐẶT BÀN (các trường có thể xếp 2 cột)]
+
+[GALLERY ẢNH MÓN]
+  ▢ ▢ ▢   (lưới 3 cột)
+  ▢ ▢ ▢
+
+[BẢN ĐỒ] (nhúng, nằm dưới gallery hoặc cạnh form nếu đủ chỗ)
+
+[FOOTER]
+```
+
+- Desktop (≥ 1024px)
+```
+[HEADER] (logo trái, số điện thoại phải)
+
+[HERO IMAGE] (chiếm toàn chiều ngang hoặc banner lớn)
+
+[LAYOUT CHÍNH: 3 cột]
+  [TRÁI]   Sidebar (tuỳ chọn): thông tin ngắn / khuyến mãi
+  [GIỮA]   Nội dung chính: GALLERY ẢNH (lưới 4 cột)
+  [PHẢI]   Panel đặt bàn + Google Map (cố định/sticky)
+
+[FOOTER]
+```
+
+
+Các phần bị ẩn/di chuyển theo breakpoint:
+- Mobile: Bản đồ ẩn/thu gọn; sidebar không hiển thị. Gallery giảm số cột (1–2).
+- Tablet: Sidebar hợp nhất vào nội dung (xuống dòng) hoặc nằm trên/dưới; bản đồ hiển thị nhưng thường nằm dưới gallery.
+- Desktop: Sidebar hiển thị (form + map); gallery hiển thị nhiều cột hơn (4 cột).
+
+CSS skeleton (Mobile-First) — chỉ layout, dùng Grid + media queries
+
+```css
+/* Cơ bản (mobile-first) */
+:root{
+  --gap: 16px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,Arial,sans-serif}
+.site{display:grid;grid-template-rows:auto auto 1fr auto;min-height:100vh}
+.header{padding:12px;display:flex;justify-content:space-between;align-items:center}
+.hero{width:100%;height:220px;background:#ccc}
+
+/* Nội dung chính xếp dọc trên mobile */
+.main{display:grid;gap:var(--gap);padding:12px}
+.booking-form{background:#fff;padding:12px;border-radius:6px}
+.gallery{display:grid;grid-template-columns:1fr;gap:12px}
+.gallery img{width:100%;height:auto;display:block}
+.map{display:none} /* ẩn map trên mobile */
+.footer{padding:12px;background:#f6f6f6;text-align:center}
+
+/* Tablet */
+@media (min-width:768px){
+  .hero{height:320px}
+  .gallery{grid-template-columns:repeat(3,1fr)} /* 3 cột cho tablet */
+  .booking-form{max-width:720px;margin:0 auto} /* căn giữa form hoặc đặt trên gallery */
+  .map{display:block;height:300px} /* hiển thị map dưới nội dung */
+}
+
+/* Desktop */
+@media (min-width:1024px){
+  .site{grid-template-columns:240px 1fr 360px;grid-template-rows:auto 1fr auto;grid-template-areas:
+    "header header header"
+    "sidebar content aside"
+    "footer footer footer"}
+
+  .header{grid-column:1/-1}
+  .sidebar{grid-area:sidebar;display:block;padding:12px}
+  .content{grid-area:content;padding:12px}
+  .aside{grid-area:aside;padding:12px} /* form + map đặt ở đây */
+
+  .gallery{grid-template-columns:repeat(4,1fr)} /* 4 cột cho desktop */
+  .map{display:block;height:100%}
+}
+
+/* Ảnh responsive */
+.responsive-img{max-width:100%;height:auto;display:block}
+
+/* Lưu ý: các trường form giữ flow; có thể thêm sticky cho desktop nếu cần */
+```
