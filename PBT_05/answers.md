@@ -98,6 +98,31 @@
 | 1000px | 960px |
 | 1400px | 1140px |
 
+---
+
+### SCSS (refactor) — files added
+
+I created a SCSS structure and compiled CSS in `PBT_05`:
+
+- `scss/_variables.scss` — color, font, breakpoints, spacing variables
+- `scss/_mixins.scss` — `respond-to()`, `flex-center`, `card-shadow`
+- `scss/_components.scss` — nested `.card` block and components
+- `scss/style.scss` — main file importing partials
+- `style.css` — compiled CSS output
+
+Compile command (use Dart Sass):
+
+```
+sass scss/style.scss style.css --no-source-map
+```
+
+Or compile whole folder:
+
+```
+sass scss:.
+```
+
+
 ### Câu A4 (5đ) — SCSS Basics
 
 1. Variables: Biến cho phép lưu giá trị dùng lại.
