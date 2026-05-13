@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MQShop - Bootstrap 5 cơ bản</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-img {
+            height: 40vh;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .card-img-top {
+            height: 160px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a class="navbar-brand" href="#">MQShop</a>
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link active" href="#">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#products">Sản phẩm</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="bg-light py-5">
+        <div class="container text-center">
+            <h1 class="display-5">Chào mừng đến với MQShop</h1>
+            <a href="#products" class="btn btn-primary">Xem sản phẩm</a>
+        </div>
+    </header>
+
+    <section id="products" class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0">Sản phẩm nổi bật</h3>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23ddd'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23666' font-size='20'>Ảnh 1</text></svg>"
+                            class="card-img-top" alt="Placeholder">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Sản phẩm A</h5>
+                            <p class="card-text text-muted mb-2">Giá: <strong>₫199.000</strong></p>
+                            <div class="mt-auto d-flex gap-2">
+                                <button class="btn btn-outline-primary btn-sm">Chi tiết</button>
+                                <button class="btn btn-primary btn-sm">Thêm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23ddd'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23666' font-size='20'>Ảnh 2</text></svg>"
+                            class="card-img-top" alt="Placeholder">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Sản phẩm B</h5>
+                            <p class="card-text text-muted mb-2">Giá: <strong>₫249.000</strong></p>
+                            <div class="mt-auto d-flex gap-2">
+                                <button class="btn btn-outline-primary btn-sm">Chi tiết</button>
+                                <button class="btn btn-primary btn-sm">Thêm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23ddd'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23666' font-size='20'>Ảnh 3</text></svg>"
+                            class="card-img-top" alt="Placeholder">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Sản phẩm C</h5>
+                            <p class="card-text text-muted mb-2">Giá: <strong>₫129.000</strong></p>
+                            <div class="mt-auto d-flex gap-2">
+                                <button class="btn btn-outline-primary btn-sm">Chi tiết</button>
+                                <button class="btn btn-primary btn-sm">Thêm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23ddd'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23666' font-size='20'>Ảnh 4</text></svg>"
+                            class="card-img-top" alt="Placeholder">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Sản phẩm D</h5>
+                            <p class="card-text text-muted mb-2">Giá: <strong>₫299.000</strong></p>
+                            <div class="mt-auto d-flex gap-2">
+                                <button class="btn btn-outline-primary btn-sm">Chi tiết</button>
+                                <button class="btn btn-primary btn-sm">Thêm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h6>Về MQShop</h6>
+                </div>
+                <div class="col-12 col-md-6 text-md-end">
+                    <small class="text-muted">© 2026 MQShop</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
