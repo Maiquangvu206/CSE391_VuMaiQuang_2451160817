@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyboard App</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main class="app" id="app">
+        <header class="topbar">
+            <h1>Keyboard Gallery</h1>
+            <p>← → đổi ảnh · 1-9 nhảy ảnh · Space play/pause · Ctrl+K mở command palette · Esc đóng modal</p>
+        </header>
+
+        <section class="gallery-section" aria-label="Image gallery">
+            <div class="gallery-toolbar">
+                <button id="prevBtn" aria-label="Previous image">←</button>
+                <button id="playBtn" aria-label="Play slideshow">▶</button>
+                <button id="nextBtn" aria-label="Next image">→</button>
+                <button id="openCommandsBtn" aria-label="Open command palette">Ctrl+K</button>
+            </div>
+
+            <div class="main-view">
+                <img id="mainImage" alt="Selected image" />
+                <div class="caption">
+                    <h2 id="imageTitle"></h2>
+                    <p id="imageMeta"></p>
+                </div>
+            </div>
+
+            <div id="thumbnails" class="thumbnails" aria-label="Thumbnail list"></div>
+        </section>
+    </main>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button id="closeModalBtn" class="close-modal" aria-label="Close modal">✕</button>
+        <img id="modalImage" alt="Preview image" />
+    </div>
+
+    <div id="overlay" class="overlay hidden" role="presentation"></div>
+
+    <section
+        id="commandPalette"
+        class="command-palette hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Command palette"
+    >
+        <label for="commandInput" class="sr-only">Search commands</label>
+        <input
+            id="commandInput"
+            type="text"
+            placeholder="Type a command..."
+            aria-label="Command search"
+            autocomplete="off"
+        />
+        <ul id="commandList" class="command-list" role="listbox" aria-label="Commands"></ul>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
