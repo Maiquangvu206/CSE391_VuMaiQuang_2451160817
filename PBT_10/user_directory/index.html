@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Directory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>User Directory</h1>
+    <input type="text" id="search" placeholder="Search by name or email...">
+
+    <form id="userForm">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Save User</button>
+    </form>
+    <div id="message"></div>
+    <div id="loading"></div>
+    <div id="users"></div>
+
+    <script src="api.js"></script>
+    <script src="ui.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
